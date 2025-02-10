@@ -5,9 +5,11 @@ const bodyParser =require('body-parser');
 const vendorRoutes =require('./routes/vendorRoutes')
 const firmRoutes =require('./routes/firmRoutes')
 const productRoutes =require('./routes/productRoutes')
+const cors =require('cors');
 const path = require('path')
 const port = process.env.PORT || 4000;
 const app=express()
+app.use(cors())
 dotEnv.config();
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("Mongodb connected suceesfully"))
@@ -21,6 +23,6 @@ app.listen(port, ()=>{
     console.log(`SERVER STARTeD ${port}`)
 })
 
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
     res.send("<h1>WELCOME SUBY</h1>")
 })
